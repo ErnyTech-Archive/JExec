@@ -22,9 +22,8 @@ public class JExec {
      */
     public JExec(String command) {
         this.command = command;
-        var commands = this.command.split("\\s++");
         this.processBuilder = new ProcessBuilder();
-        this.processBuilder.command(commands);
+        this.processBuilder.command("sh", "-c", this.command);
         this.processBuilder.redirectErrorStream(true);
     }
 
