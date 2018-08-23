@@ -48,8 +48,6 @@ public class JExec {
             throw e;
         }
 
-        process.waitFor();
-        this.returnValue = process.exitValue();
         var outputStream = process.getInputStream();
         var outputScanner = new Scanner(outputStream).useDelimiter("\\A");
 
@@ -58,6 +56,9 @@ public class JExec {
         } else {
             this.output = "";
         }
+        
+        process.waitFor();
+        this.returnValue = process.exitValue();
 
         if (this.returnValue != 0) {
             throw new CommandErrorException(this.command);
